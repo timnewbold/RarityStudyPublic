@@ -2,3 +2,5 @@
 1_PrepareDiversityData
 2_DivideDiversityDataByRarity
 3_PrepareSiteData
+4_RunRichnessModels
+5_RunAbundanceModels

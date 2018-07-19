@@ -25,4 +25,6 @@ elif 'ucbttne-LT2'==socket.gethostname():
 STAGES = [ ('1', R,         '1_PrepareDiversityData.R'),
            ('2', R,         '2_DivideDiversityDataByRarity.R'),
            ('3', R,         '3_PrepareSiteData.R'),
+           ('4', R,         '4_RunRichnessModels.R'),
+           ('5', R,         '5_RunAbundanceModels.R'),
          ]

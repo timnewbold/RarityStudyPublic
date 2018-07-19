@@ -13,7 +13,9 @@ sitesRC <- lapply(X = diversityRC,FUN = SiteMetrics,extra.cols=c(
   "SSB","SSBS","Biome","Sampling_method",
   "Study_common_taxon","Sampling_effort",
   "Sampling_effort_unit","LandUse", "Class", 
-  "Realm","combined.quants"),srEstimators=FALSE)
+  "Realm","combined.quants",
+  "range.quants","abund.quants","habitat.quants"),
+  srEstimators=FALSE)
 
 sitesRC <- lapply(sitesRC,function(sites){
   sites$LogAbund<-(log(sites$Total_abundance+1))
@@ -37,3 +39,6 @@ sitesRC <- lapply(sitesRC,function(sites){
 allSites <- do.call('rbind',sitesRC)
 
 print(table(allSites$combined.quants,allSites$LandUse))
+
+saveRDS(object = sitesRC,file = paste0(outDir,"SitesByRarityCategory.rds"))
+saveRDS(object = allSites,file = paste0(outDir,"CombinedSites.rds"))
