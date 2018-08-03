@@ -79,6 +79,6 @@ modelsByCategory <- mapply(function(sites,label){
   
   return(luModel)
   
-},sitesRC,gsub(" ","_",names(sitesRC)))
+},sitesRC,gsub(" ","_",names(sitesRC)),SIMPLIFY = FALSE)
 
 saveRDS(object = modelsByCategory,file = paste0(outDir,"ModelsByRarityCategory.rds"))

@@ -66,19 +66,19 @@ modelsByCategory <- mapply(function(sites,label){
   cat(paste0('Chi Sq = ',round(av$Chisq[2],2),'\n'))
   cat(paste0('DF = ',paste(av$Df,collapse = ','),'\n'))
   cat(paste0('P = ',round(av$`Pr(>Chisq)`[2],4),'\n'))
-  
+
   png(filename = paste0(outDir,"SRResponse_",label,".png"),
       width = 12.5,height = 8,units = "cm",res = 1200)
-  
+
   PlotGLMERFactor(model = luModel$model,data = luModel$data,
                   responseVar = "Species richness",logLink = "e",
                   catEffects = "LandUse",order = c(1,2,3,5,4),
                   seMultiplier = 1)
-  
+
   invisible(dev.off())
-  
+
   return(luModel)
   
-},sitesRC,gsub(" ","_",names(sitesRC)))
+},sitesRC,gsub(" ","_",names(sitesRC)),SIMPLIFY = FALSE)
 
 saveRDS(object = modelsByCategory,file = paste0(outDir,"ModelsByRarityCategory.rds"))
