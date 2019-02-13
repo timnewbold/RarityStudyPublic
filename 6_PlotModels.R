@@ -9,9 +9,10 @@ outDir <- "6_PlotModels/"
 richModels <- readRDS(paste0(richModelsDir,"ModelsByRarityCategory.rds"))
 abundModels <- readRDS(paste0(abundModelsDir,"ModelsByRarityCategory.rds"))
 
-ylims <- c(-100,100)
+ylims <- c(-120,80)
 
-png(filename = paste0(outDir,"ResultsFigure.png"),width = 12.5,height = 19.5,units = "cm",res = 1200)
+png(filename = paste0(outDir,"ResultsFigure.png"),width = 12.5,
+    height = 19.5,units = "cm",res = 150)
 
 layout.mat <- matrix(data = c(1,2,3,4,5,1,6,7,8,9),nrow = 5,ncol = 2,byrow = FALSE)
 layout(mat = layout.mat,widths = rep(12.5/2,2),heights = c(1.5,rep(4.5,4)))
