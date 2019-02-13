@@ -1,6 +1,7 @@
 suppressMessages(suppressWarnings(library(yarg)))
 
 dataDir <- "0_data/"
+densDir <- "0_ProcessTetraDENSITYData/"
 outDir <- "1_PrepareDiversityData/"
 
 cat('Loading database extracts\n')
@@ -11,6 +12,7 @@ cat('Selecting appropriate data\n')
 
 diversity <- droplevels(diversity[(diversity$Phylum=="Chordata"),])
 diversity <- droplevels(diversity[(diversity$Class!=""),])
+diversity <- droplevels(diversity[(diversity$Class %in% c("Mammalia","Aves","Amphibia")),])
 
 cat('Correcting for sampling effort\n')
 diversity <- CorrectSamplingEffort(diversity)
@@ -35,9 +37,17 @@ habitat.bird <- IUCNHabitat2(path = paste(
 
 diversity <- AddTraits(diversity,habitat.amphib,habitat.mamm,habitat.bird) 
 
-santiniDens <- SantiniVertebrateAverageDensity(
-  paste0(dataDir,"AverageDensities.csv"))
+santiniDens <- SantiniDensity(
+  paste0(densDir,"TetraDensitySpeciesAverages.csv"))
 
 diversity <- AddTraits(diversity,santiniDens)
+
+complete.cases <- apply(X = 
+  diversity[,c('Range_area_EOO_log10_square_km',
+               'Natural_habitat_specialization_Category',
+               'Average_local_density_log10_individuals_per_km2')],
+  MARGIN = 1,FUN = function(x) return(all(!is.na(x))))
+
+diversity.complete <- diversity[complete.cases,]
 
 saveRDS(object = diversity,file = paste0(outDir,"diversity.rds"))
