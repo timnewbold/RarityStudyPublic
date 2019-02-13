@@ -8,7 +8,7 @@ cat('Preparing data\n')
 
 diversity$log.range <- diversity$Range_area_EOO_log10_square_km
 diversity$Habitat_Specialisation<-diversity$Natural_habitat_specialization_Category
-diversity$Density <- diversity$Average_Density_individuals_per_km2
+diversity$Density <- diversity$Average_local_density_log10_individuals_per_km2
 diversity$LandUse <- diversity$Predominant_land_use
 
 diversity <- droplevels(diversity[!is.na(diversity$log.range),])
