@@ -1,4 +1,7 @@
 0_data
+.Rhistory
+0_ProcessTetraDENSITYData/
+__pycache__
 1_PrepareDiversityData
 2_DivideDiversityDataByRarity
 3_PrepareSiteData
